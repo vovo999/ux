@@ -1,8 +1,14 @@
 {
   "name": "@blockstack/waffle-docs",
+<<<<<<< HEAD
   "version": "0.1.8",
   "dependencies": {
     "@blockstack/ui": "^1.6.1",
+=======
+  "version": "0.2.0-alpha.0",
+  "dependencies": {
+    "@blockstack/ui": "^1.2.0-alpha.0",
+>>>>>>> chore(release): publish
     "@mdx-js/loader": "1.5.7",
     "@mdx-js/mdx": "^1.5.7",
     "@mdx-js/react": "^1.5.7",
