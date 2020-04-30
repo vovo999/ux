@@ -1,10 +1,6 @@
 {
   "name": "@blockstack/connect",
-<<<<<<< HEAD
-  "version": "2.7.2",
-=======
   "version": "2.4.0-alpha.0",
->>>>>>> chore(release): publish
   "scripts": {
     "build": "yarn build:modules && yarn build:standalone",
     "build:modules": "tsdx build --format cjs,esm,umd",
@@ -32,11 +28,7 @@
     }
   ],
   "dependencies": {
-<<<<<<< HEAD
-    "@blockstack/ui": "^1.6.1",
-=======
     "@blockstack/ui": "^1.2.0-alpha.0",
->>>>>>> chore(release): publish
     "preact": "^10.4.0",
     "prettier": "^2.0.5",
     "styled-components": "^5.1.0",
