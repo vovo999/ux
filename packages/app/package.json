@@ -11,7 +11,7 @@
     "lint:eslint": "eslint --ext .ts,.tsx ./src/ -f unix",
     "lint:fix": "eslint --ext .ts,.tsx ./src/ -f unix --fix && prettier --write src/**/*.{ts,tsx} *.js",
     "lint:prettier": "prettier --check src/**/*.{ts,tsx} *.js",
-    "prod:ext": "cross-env NODE_ENV=production EXT_ENV=prod webpack -p",
+    "prod:ext": "cross-env NODE_ENV=production EXT_ENV=prod webpack -p --config webpack-ext.config.js",
     "prod:web": "cross-env NODE_ENV=production webpack -p",
     "prod:web:analyze": "cross-env NODE_ENV=production ANALYZE=true webpack -p",
     "test": "jest --passWithNoTests",

@@ -79,7 +79,12 @@ module.exports = {
   output: {
     path: distRootPath,
     chunkFilename: !isDevelopment ? '[name].[contenthash:8].chunk.js' : isDevelopment && '[name].chunk.js',
-    filename: !isDevelopment ? '[name].[contenthash:8].js' : isDevelopment && '[name].js',
+    filename: () => {
+      if (extEnv === 'prod' || isDevelopment) {
+        return '[name].js';
+      }
+      return '[name].[contenthash:8].js';
+    },
   },
   resolve: {
     extensions: ['.js', '.ts', '.tsx', '.json'],

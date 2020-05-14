@@ -68,7 +68,7 @@ export const authenticate = async ({
   const path = sendToSignIn ? 'sign-in' : 'sign-up';
 
   const popup = popupCenter({
-    url: `${authURL.origin}/#/${path}?${urlParams.toString()}`,
+    url: `${authURL.origin}${authURL.pathname}#/${path}?${urlParams.toString()}`,
   });
 
   setupListener({ popup, authRequest, finished, authURL, userSession });
