@@ -1,9 +1,9 @@
-import React from "react";
-import { useRouter } from "next/router";
+import React from 'react';
+import { useRouter } from 'next/router';
 
 const initialState = {
   mobileMenu: false,
-  activeSlug: ""
+  activeSlug: '',
 };
 const AppStateContext = React.createContext(initialState);
 
@@ -34,7 +34,7 @@ const useMobileMenuState = () => {
     setOpen: setState,
     handleToggle,
     handleClose,
-    handleOpen
+    handleOpen,
   };
 };
 
@@ -46,14 +46,14 @@ const useActiveHeading = ({ slug }) => {
   React.useEffect(() => {
     if (
       asPath &&
-      asPath.includes("#") &&
-      asPath.split("#")[1] === slug &&
+      asPath.includes('#') &&
+      asPath.split('#')[1] === slug &&
       state.activeSlug !== slug
     ) {
       setState(s => ({ ...s, activeSlug: slug }));
     }
-    if (asPath && !asPath.includes("#")) {
-      setState(s => ({ ...s, activeSlug: "" }));
+    if (asPath && !asPath.includes('#')) {
+      setState(s => ({ ...s, activeSlug: '' }));
     }
   }, [asPath]);
 
@@ -76,7 +76,7 @@ const AppStateProvider = props => {
     <AppStateContext.Provider
       value={{
         ...state,
-        setState
+        setState,
       }}
       {...props}
     />
@@ -89,5 +89,5 @@ export {
   useAppState,
   selectMobileMenuState,
   useMobileMenuState,
-  useActiveHeading
+  useActiveHeading,
 };

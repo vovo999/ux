@@ -1,41 +1,31 @@
-import { Box, PseudoBox, Flex, Text } from "@blockstack/ui";
-import NextLink from "next/link";
-import React, { forwardRef } from "react";
-import css from "@styled-system/css";
-import CodeBlock from "../code-block";
-import LinkIcon from "mdi-react/LinkVariantIcon";
-import HashtagIcon from "mdi-react/HashtagIcon";
-import { useHover } from "use-events";
-import Head from "next/head";
-import { slugify } from "../../common/utils";
-import { useActiveHeading } from "../app-state";
+import { Box, PseudoBox, Flex, Text } from '@blockstack/ui';
+import NextLink from 'next/link';
+import React, { forwardRef } from 'react';
+import css from '@styled-system/css';
+import CodeBlock from '../code-block';
+import LinkIcon from 'mdi-react/LinkVariantIcon';
+import HashtagIcon from 'mdi-react/HashtagIcon';
+import { useHover } from 'use-events';
+import Head from 'next/head';
+import { slugify } from '../../common/utils';
+import { useActiveHeading } from '../app-state';
 
 const Pre = props => (
   <Box
     as="pre"
     css={{
-      "> *": {
-        whiteSpace: "initial"
-      }
+      '> *': {
+        whiteSpace: 'initial',
+      },
     }}
     {...props}
   />
 );
 
-const Table = props => (
-  <Box as="table" textAlign="left" mt="32px" width="full" {...props} />
-);
+const Table = props => <Box as="table" textAlign="left" mt="32px" width="full" {...props} />;
 
 const THead = props => {
-  return (
-    <Box
-      as="th"
-      bg="blue.50"
-      p={2}
-      textStyle={"body.small.medium"}
-      {...props}
-    />
-  );
+  return <Box as="th" bg="blue.50" p={2} textStyle={'body.small.medium'} {...props} />;
 };
 
 const TData = props => (
@@ -58,8 +48,8 @@ const Link = forwardRef((props, ref) => (
     cursor="pointer"
     textDecoration="underline"
     outline="none"
-    _hover={{ color: "blue.hover", textDecor: "none" }}
-    _focus={{ boxShadow: "outline" }}
+    _hover={{ color: 'blue.hover', textDecor: 'none' }}
+    _focus={{ boxShadow: 'outline' }}
     {...props}
   />
 ));
@@ -69,17 +59,17 @@ const TextItem = props => (
     mb="1em"
     mt="2em"
     css={{
-      "&[id]": {
-        pointerEvents: "none"
+      '&[id]': {
+        pointerEvents: 'none',
       },
-      "&[id]:before": {
-        display: "block",
-        height: " 6rem",
-        marginTop: "-6rem",
-        visibility: "hidden",
-        content: `""`
+      '&[id]:before': {
+        display: 'block',
+        height: ' 6rem',
+        marginTop: '-6rem',
+        visibility: 'hidden',
+        content: `""`,
       },
-      "&[id]:hover a": { opacity: 1 }
+      '&[id]:hover a': { opacity: 1 },
     }}
     {...props}
   >
@@ -92,7 +82,7 @@ const TextItem = props => (
           color="teal.500"
           fontWeight="normal"
           outline="none"
-          _focus={{ opacity: 1, boxShadow: "outline" }}
+          _focus={{ opacity: 1, boxShadow: 'outline' }}
           opacity="0"
           ml="0.375rem"
           href={`#${props.id}`}
@@ -113,24 +103,19 @@ const Heading = ({ as, children, id, ...rest }) => {
     <>
       <Flex key={slug} align="center" position="relative" {...bind} {...rest}>
         {isActive ? (
-          <Box
-            position="absolute"
-            left="-20px"
-            transform="translateY(1px)"
-            color="blue.300"
-          >
+          <Box position="absolute" left="-20px" transform="translateY(1px)" color="blue.300">
             <HashtagIcon size="1rem" />
           </Box>
         ) : null}
-        <Box color={isActive ? "blue" : "ink"}>
+        <Box color={isActive ? 'blue' : 'ink'}>
           <Text as={as}>{children}</Text>
         </Box>
         <PseudoBox
           aria-label="anchor"
-          _hover={{ cursor: "pointer", opacity: 1 }}
+          _hover={{ cursor: 'pointer', opacity: 1 }}
           opacity={hovered ? 0.5 : 0}
           px={2}
-          color={"ink"}
+          color={'ink'}
           as="a"
           href={`#${slug}`}
           onClick={() => setActiveSlug(slug)}
@@ -190,9 +175,7 @@ const MDXComponents = {
       <Link {...props} />
     </NextLink>
   ),
-  p: props => (
-    <Text as="p" mt={4} display="block" textStyle="body.large" {...props} />
-  ),
+  p: props => <Text as="p" mt={4} display="block" textStyle="body.large" {...props} />,
   ul: props => <Box as="ul" pt="8px" pl="16px" {...props} />,
   ol: props => <Box as="ol" pt="8px" pl="16px" {...props} />,
   li: props => <Box as="li" pb="4px" {...props} />,
@@ -208,16 +191,16 @@ const MDXComponents = {
       px={3}
       py={3}
       css={css({
-        "> *:first-of-type": {
+        '> *:first-of-type': {
           marginTop: 0,
-          borderLeft: "4px solid",
-          borderColor: "blue.100",
-          pl: 2
-        }
+          borderLeft: '4px solid',
+          borderColor: 'blue.100',
+          pl: 2,
+        },
       })}
       {...props}
     />
-  )
+  ),
 };
 
 export default MDXComponents;

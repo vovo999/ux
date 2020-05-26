@@ -1,17 +1,17 @@
-import React from "react";
-import { Box, Flex, Text } from "@blockstack/ui";
-import MenuIcon from "mdi-react/MenuIcon";
-import CloseIcon from "mdi-react/CloseIcon";
-import GithubCircleIcon from "mdi-react/GithubCircleIcon";
-import { useMobileMenuState } from "../app-state";
-import { SideNav } from "../side-nav";
+import React from 'react';
+import { Box, Flex, Text } from '@blockstack/ui';
+import MenuIcon from 'mdi-react/MenuIcon';
+import CloseIcon from 'mdi-react/CloseIcon';
+
+import { useMobileMenuState } from '../app-state';
+import { SideNav } from '../side-nav';
 
 const MenuButton = ({ ...rest }) => {
   const { isOpen, handleOpen, handleClose } = useMobileMenuState();
   const Icon = isOpen ? CloseIcon : MenuIcon;
   const handleClick = isOpen ? handleClose : handleOpen;
   return (
-    <Flex display={["flex", "flex", "none"]} onClick={handleClick} px={1}>
+    <Flex display={['flex', 'flex', 'none']} onClick={handleClick} px={1}>
       <Icon color="currentColor" />
     </Flex>
   );
@@ -35,7 +35,7 @@ const Header = ({ ...rest }) => {
         position="fixed"
         width="100%"
         bg="white"
-        zIndex="99"
+        zIndex={99}
         height="50px"
       >
         <Text fontWeight="medium">Waffle Design System</Text>
@@ -48,7 +48,7 @@ const Header = ({ ...rest }) => {
         bg="white"
         width="100%"
         zIndex="99"
-        display={isOpen ? ["block", "block", "none"] : "none"}
+        display={isOpen ? ['block', 'block', 'none'] : 'none'}
       />
     </>
   );

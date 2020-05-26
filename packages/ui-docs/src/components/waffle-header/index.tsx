@@ -1,25 +1,15 @@
-import React from "react";
-import { Text, Flex } from "@blockstack/ui";
-import { ContentWrapper } from "../content-wrapper";
+import React from 'react';
+import { Text, Flex } from '@blockstack/ui';
+import { ContentWrapper } from '../content-wrapper';
 
 const WaffleHeader = () => (
-  <Flex
-    align="center"
-    justify="center"
-    minHeight={["unset", "unset", "300px"]}
-    bg="ink"
-  >
+  <Flex align="center" justify="center" minHeight={['unset', 'unset', '300px']} bg="ink">
     <ContentWrapper>
       <Text as="h1" display="block" fontSize={[5, 5, 7]} color="white">
         Waffle
-        <Text
-          transform="translateY(5px)"
-          opacity={0.5}
-          display="inline-block"
-          as="sup"
-        >
+        <Text transform="translateY(5px)" opacity={0.5} display="inline-block" as="sup">
           &trade;
-        </Text>{" "}
+        </Text>{' '}
         Components
       </Text>
       <Text pt={1} display="block" as="h2" fontSize={[3, 3, 4]} color="ink.100">

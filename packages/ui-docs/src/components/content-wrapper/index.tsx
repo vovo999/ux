@@ -1,5 +1,5 @@
-import React from "react";
-import { Box } from "@blockstack/ui";
+import React from 'react';
+import { Box } from '@blockstack/ui';
 const ContentWrapper = props => (
   <Box
     width="100%"
