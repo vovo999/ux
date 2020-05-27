@@ -1,4 +1,4 @@
-const topNavLinks = [
+export const topNavLinks = [
   'Getting started',
   'Patterns and Principles',
   'System props',
@@ -6,13 +6,22 @@ const topNavLinks = [
   'Theme',
 ];
 
-const components = ['Box', 'Button', 'Flex', 'Input', 'PseudoBox', 'Stack', 'Text'];
+export const components = ['Box', 'Button', 'Flex', 'Input', 'PseudoBox', 'Stack', 'Text'];
 
-const bottomNavLinks = ['Contributing', 'Further reading', 'Changelog', 'GitHub'];
+export const hooks = [
+  'useControllable',
+  'useDisclosure',
+  'useEventListener',
+  'useForceUpdate',
+  'useId',
+  'useLatestRef',
+  'useMergeRefs',
+];
 
-const routes = [...topNavLinks, ...components, ...bottomNavLinks];
+export const bottomNavLinks = ['Contributing', 'Further reading', 'GitHub'];
 
-const links = {
-  github: 'https://github.com/blockstack/waffle-ui',
+export const routes = [...topNavLinks, ...components, ...bottomNavLinks];
+
+export const links = {
+  github: 'https://github.com/blockstack/ux',
 };
-export { topNavLinks, components, bottomNavLinks, routes, links };

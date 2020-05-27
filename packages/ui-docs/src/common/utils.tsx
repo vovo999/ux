@@ -1,5 +1,5 @@
-const slugify = text =>
-  text
+export const slugify = (string: string) =>
+  string
     .toString()
     .toLowerCase()
     .replace(/\s+/g, '-') // Replace spaces with -
@@ -7,5 +7,3 @@ const slugify = text =>
     .replace(/\-\-+/g, '-') // Replace multiple - with single -
     .replace(/^-+/, '') // Trim - from start of text
     .replace(/-+$/, ''); // Trim - from end of text
-
-export { slugify };
