@@ -1,5 +1,8 @@
 {
   "version": 2,
+  "github": {
+    "enabled": false
+  },
   "name": "blockstack-ui",
   "builds": [{ "src": "out/**", "use": "@now/static" }],
   "routes": [
@@ -8,5 +11,5 @@
     { "src": "/static/(.+)", "dest": "out/static/$1" },
     { "src": "/(.+)", "dest": "out/$1.html" }
   ],
-  "alias": ["waffle.blockstack.sh"]
+  "alias": ["blockstack-ui.now.sh"]
 }
