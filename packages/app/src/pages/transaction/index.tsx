@@ -185,14 +185,14 @@ export const Transaction: React.FC = () => {
   }, []);
 
   const finishTransaction = async (tx: StacksTransaction) => {
-    const txRaw = tx.serialize().toString('hex');
-
+    const serialized = tx.serialize();
+    const txRaw = serialized.toString('hex');
     setTxHash(txRaw);
 
-    const res = await broadcastTx(tx.serialize());
+    const res = await broadcastTx(serialized);
 
     if (res.ok) {
-      const txId = await res.text();
+      const txId: string = await res.json();
       finalizeTxSignature({ txId, txRaw });
     } else {
       const response = await res.json();

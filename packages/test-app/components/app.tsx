@@ -52,6 +52,7 @@ export const App: React.FC = () => {
         <ExplorerLink
           txId="STB44HYPYAT2BB2QE513NSP81HTMYWBJP02HPGK6.status"
           text="View contract in explorer"
+          skipConfirmCheck
         />
         <Flex wrap="wrap" justifyContent="left" mb={6}>
           {state.userData ? (
@@ -77,6 +78,7 @@ export const App: React.FC = () => {
         <ExplorerLink
           txId="STB44HYPYAT2BB2QE513NSP81HTMYWBJP02HPGK6.counter"
           text="View contract in explorer"
+          skipConfirmCheck
         />
         <CounterActions />
         <Faucet address={state.userData?.profile?.stxAddress} />
