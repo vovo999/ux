@@ -28,6 +28,12 @@ import { TabbedCard, Tab } from '@components/tabbed-card';
 import { finalizeTxSignature } from '@common/utils';
 import { encodeContractCallArgument, getRPCClient, stacksValue } from '@common/stacks-utils';
 import { Identity } from '@blockstack/keychain';
+import {
+  doTrack,
+  TRANSACTION_SIGN_START,
+  TRANSACTION_SIGN_SUBMIT,
+  TRANSACTION_SIGN_ERROR,
+} from '@common/track';
 
 const broadcastTx = (serializedTx: Buffer) => {
   const rpcClient = getRPCClient();
@@ -155,6 +161,11 @@ export const Transaction: React.FC = () => {
         setContractSrc(contractSource);
         setPendingTransaction(tx);
       } else {
+        doTrack(TRANSACTION_SIGN_ERROR, {
+          txType: pendingTransaction?.txType,
+          appName: pendingTransaction?.appDetails?.name,
+          error: 'Contract not found',
+        });
         setError(`Unable to find contract ${tx.contractAddress}.${tx.contractName}`);
       }
     } else if (tx.txType === 'contract-deploy') {
@@ -164,6 +175,10 @@ export const Transaction: React.FC = () => {
     } else if (tx.txType === 'stx-transfer') {
       setPendingTransaction(tx);
     }
+    doTrack(TRANSACTION_SIGN_START, {
+      txType: tx.txType,
+      appName: tx.appDetails?.name,
+    });
   };
 
   const decodeRequest = async () => {
@@ -192,14 +207,24 @@ export const Transaction: React.FC = () => {
     const res = await broadcastTx(serialized);
 
     if (res.ok) {
+      doTrack(TRANSACTION_SIGN_SUBMIT, {
+        txType: pendingTransaction?.txType,
+        appName: pendingTransaction?.appDetails?.name,
+      });
       const txId: string = await res.json();
       finalizeTxSignature({ txId, txRaw });
     } else {
       const response = await res.json();
       if (response.error) {
+        const error = `${response.error} - ${response.reason}`;
+        doTrack(TRANSACTION_SIGN_ERROR, {
+          txType: pendingTransaction?.txType,
+          appName: pendingTransaction?.appDetails?.name,
+          error: error,
+        });
         console.error(response.error);
         console.error(response.reason);
-        setError(`${response.error} - ${response.reason}`);
+        setError(error);
       }
     }
     setLoading(false);
