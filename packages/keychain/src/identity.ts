@@ -24,6 +24,7 @@ import {
   addressToString,
   StacksTestnet,
   makeSTXTokenTransfer,
+  PostConditionMode,
 } from '@blockstack/stacks-transactions';
 import BN from 'bn.js';
 import RPCClient from '@blockstack/rpc-client';
@@ -242,6 +243,7 @@ export class Identity {
       fee: new BN(200),
       nonce: new BN(nonce),
       network: new StacksTestnet(),
+      postConditionMode: PostConditionMode.Allow,
     });
     return tx;
   }
@@ -254,6 +256,7 @@ export class Identity {
       senderKey: this.getSTXPrivateKey().toString('hex'),
       network: new StacksTestnet(),
       nonce: new BN(nonce),
+      postConditionMode: PostConditionMode.Allow,
     });
     return tx;
   }
@@ -267,6 +270,7 @@ export class Identity {
       senderKey: this.getSTXPrivateKey().toString('hex'),
       network: new StacksTestnet(),
       nonce: new BN(nonce),
+      postConditionMode: PostConditionMode.Allow,
     });
     return tx;
   }
