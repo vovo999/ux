@@ -31,7 +31,7 @@ export const ExplorerLink: React.FC<LinkProps> = ({ txId, text, skipConfirmCheck
     }
   }, [txId]);
 
-  const url = `https://testnet-explorer.now.sh/txid/${txId.replace('"', '')}`;
+  const url = `https://testnet-explorer.blockstack.org/txid/${txId.replace('"', '')}`;
   return (
     <Link onClick={() => window.open(url, '_blank')} color="blue" display="block" my={3}>
       {confirmed ? text || 'View transaction in explorer' : 'Waiting for TX to confirm...'}
