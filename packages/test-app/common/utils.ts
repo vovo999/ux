@@ -11,7 +11,9 @@ export const getAuthOrigin = () => {
     // "stacks-authenticator" for the authenticator.
     authOrigin = document.location.origin.replace('authenticator-demo', 'stacks-authenticator');
   } else if (origin.includes('authenticator-demo')) {
-    authOrigin = 'https://app.blockstack.org';
+    // TODO: revert this when 301 is merged
+    authOrigin = 'https://deploy-preview-301--stacks-authenticator.netlify.app';
+    // authOrigin = 'https://app.blockstack.org';
   }
   return authOrigin;
 };
