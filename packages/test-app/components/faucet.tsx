@@ -31,8 +31,10 @@ export const Faucet = ({ address: _address = '' }: { address: string }) => {
 
   const waitForBalance = async (currentBalance: number, attempts: number) => {
     const { balance } = await client.fetchAccount(address);
-    if (attempts > 11) {
-      setError('No results after 2 minutes. Something may have gone wrong.');
+    if (attempts > 18) {
+      setError(
+        "It looks like your transaction still isn't confirmed after a few minutes. Something may have gone wrong."
+      );
       setLoading(false);
     }
     if (balance.toNumber() > currentBalance) {
