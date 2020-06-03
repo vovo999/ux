@@ -90,12 +90,12 @@ const generateContractDeployTx = (
   identity: Identity,
   nonce: number
 ) => {
-  const { contractName, contractSource } = txData;
+  const { contractName, codeBody } = txData;
   const version = TransactionVersion.Testnet;
 
   return identity.signContractDeploy({
     contractName,
-    contractSource,
+    codeBody,
     version,
     nonce,
   });
@@ -170,7 +170,7 @@ export const Transaction: React.FC = () => {
       }
     } else if (tx.txType === 'contract-deploy') {
       console.log(tx);
-      setContractSrc(tx.contractSource);
+      setContractSrc(tx.codeBody);
       setPendingTransaction(tx);
     } else if (tx.txType === 'stx-transfer') {
       setPendingTransaction(tx);

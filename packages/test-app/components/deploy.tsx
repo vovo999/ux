@@ -12,7 +12,7 @@ export const Deploy = () => {
   const handleSubmit = () =>
     doContractDeploy({
       authOrigin,
-      contractSource: SampleContracts[0].contractSource,
+      codeBody: SampleContracts[0].contractSource,
       contractName: SampleContracts[0].contractName,
       userSession,
       finished: data => {

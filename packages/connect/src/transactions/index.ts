@@ -81,12 +81,12 @@ export const makeContractCallToken = async (opts: ContractCallOptions) => {
 };
 
 export const makeContractDeployToken = async (opts: ContractDeployOptions) => {
-  const { contractName, contractSource, appDetails } = opts;
+  const { contractName, codeBody, appDetails } = opts;
   const { privateKey, publicKey } = makeKeys(opts.userSession);
 
   const payload: ContractDeployPayload = {
     contractName,
-    contractSource,
+    codeBody,
     publicKey,
     txType: 'contract-deploy',
   };

@@ -53,7 +53,7 @@ interface ContractCallOptions {
 
 interface ContractDeployOptions {
   contractName: string;
-  contractSource: string;
+  codeBody: string;
   version: TransactionVersion;
   nonce: number;
 }
@@ -248,10 +248,10 @@ export class Identity {
     return tx;
   }
 
-  async signContractDeploy({ contractName, contractSource, nonce }: ContractDeployOptions) {
+  async signContractDeploy({ contractName, codeBody, nonce }: ContractDeployOptions) {
     const tx = await makeSmartContractDeploy({
       contractName,
-      codeBody: contractSource,
+      codeBody: codeBody,
       fee: new BN(2000),
       senderKey: this.getSTXPrivateKey().toString('hex'),
       network: new StacksTestnet(),

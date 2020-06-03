@@ -50,7 +50,7 @@ export interface ContractCallPayload extends ContractCallBase {
  */
 export interface ContractDeployBase extends TxBase {
   contractName: string;
-  contractSource: string;
+  codeBody: string;
 }
 
 export interface ContractDeployOptions extends ContractDeployBase {
