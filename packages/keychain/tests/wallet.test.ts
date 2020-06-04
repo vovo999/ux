@@ -62,6 +62,15 @@ describe('Restoring a wallet', () => {
     expect(restored.identityPublicKeychain).toEqual(generated.identityPublicKeychain);
   });
 
+  test('generates 24-word seed phrase', async () => {
+    const pass = 'password';
+    const wallet = await Wallet.generateStrong(pass);
+    const encryptedBackupPhrase = wallet.encryptedBackupPhrase;
+    const plainTextBuffer = await decrypt(Buffer.from(encryptedBackupPhrase, 'hex'), pass);
+    const backupPhrase = plainTextBuffer.toString();
+    expect(backupPhrase.split(' ').length).toEqual(24);
+  });
+
   test('generates a config private key', async () => {
     const wallet = await Wallet.generate('password');
     expect(wallet.configPrivateKey).not.toBeFalsy();

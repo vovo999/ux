@@ -8,6 +8,7 @@ import { Subdomains, registrars } from '../profiles';
 
 const IDENTITY_KEYCHAIN = 888;
 const BLOCKSTACK_ON_BITCOIN = 0;
+
 export function getIdentityPrivateKeychain(masterKeychain: BIP32Interface) {
   return masterKeychain.deriveHardened(IDENTITY_KEYCHAIN).deriveHardened(BLOCKSTACK_ON_BITCOIN);
 }

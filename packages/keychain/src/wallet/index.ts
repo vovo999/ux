@@ -23,6 +23,12 @@ import { makeReadOnlyGaiaConfig, DEFAULT_GAIA_HUB } from '../utils/gaia';
 
 const CONFIG_INDEX = 45;
 
+export const stxMainnetDerivationPath = `m/44'/5757'/0'/0/0`;
+
+export const stxTestnetDerivationPath = `m/44'/1'/0'/0/0`;
+
+type AllowedKeyEntropyBits = 128 | 256;
+
 export interface ConfigApp {
   origin: string;
   scopes: string[];
@@ -89,14 +95,23 @@ export class Wallet {
     this.walletConfig = walletConfig;
   }
 
+  static generateFactory(bitsEntropy: AllowedKeyEntropyBits) {
+    return async (password: string) => {
+      const backupPhrase = generateMnemonic(bitsEntropy, randomBytes);
+      const seedBuffer = await mnemonicToSeed(backupPhrase);
+      const masterKeychain = bip32.fromSeed(seedBuffer);
+      const ciphertextBuffer = await encrypt(backupPhrase, password);
+      const encryptedBackupPhrase = ciphertextBuffer.toString('hex');
+      return this.createAccount(encryptedBackupPhrase, masterKeychain);
+    };
+  }
+
   static async generate(password: string) {
-    const STRENGTH = 128; // 128 bits generates a 12 word mnemonic
-    const backupPhrase = generateMnemonic(STRENGTH, randomBytes);
-    const seedBuffer = await mnemonicToSeed(backupPhrase);
-    const masterKeychain = bip32.fromSeed(seedBuffer);
-    const ciphertextBuffer = await encrypt(backupPhrase, password);
-    const encryptedBackupPhrase = ciphertextBuffer.toString('hex');
-    return this.createAccount(encryptedBackupPhrase, masterKeychain);
+    return await this.generateFactory(128)(password);
+  }
+
+  static async generateStrong(password: string) {
+    return await this.generateFactory(256)(password);
   }
 
   static async restore(password: string, backupPhrase: string) {
@@ -114,7 +129,7 @@ export class Wallet {
     masterKeychain: BIP32Interface,
     identitiesToGenerate = 1
   ) {
-    const derivedKey = masterKeychain.deriveHardened(CONFIG_INDEX).privateKey;
+    const derivedKey = masterKeychain.derivePath(stxMainnetDerivationPath).privateKey;
     if (!derivedKey) {
       throw new TypeError('Unable to derive config key for wallet');
     }
